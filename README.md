@@ -3,28 +3,9 @@
 </p>
 
 <p align="center">
-    > A catch phrase that describes your plugin.
+    > Makes custom keymaps repeatable
 </p>
 
-<div align="center">
-    > Drag your video (<10MB) here to host it for free on GitHub.
-</div>
-
-<div align="center">
-
-> Videos don't work on GitHub mobile, so a GIF alternative can help users.
-
-_[GIF version of the showcase video for mobile users](SHOWCASE_GIF_LINK)_
-
-</div>
-
-## ⚡️ Features
-
-> Write short sentences describing your plugin features
-
-- FEATURE 1
-- FEATURE ..
-- FEATURE N
 
 ## 📋 Installation
 
@@ -92,41 +73,50 @@ require("lazy").setup({"repeatable.nvim"})
 </table>
 </div>
 
-## ☄ Getting started
-
-> Describe how to use the plugin the simplest way
 
 ## ⚙ Configuration
-
-> The configuration list sometimes become cumbersome, making it folded by default reduce the noise of the README file.
-
-<details>
-<summary>Click to unfold the full list of options with their default values</summary>
 
 > **Note**: The options are also available in Neovim by calling `:h repeatable.options`
 
 ```lua
 require("repeatable").setup({
-    -- you can copy the full list from lua/repeatable/config.lua
+    opts = {
+      -- define the functions you want to be repeatable
+      functions = {
+        next_git_hunk = function()
+          require('gitsigns').nav_hunk('next', { greedy = true })
+        end
+        prev_hunk = function()
+          gitsigns.nav_hunk('prev', { greedy = true })
+        end,
+  ﻿﻿      next_diagnostic = function()
+          vim.diagnostic.goto_next({
+            float = false,
+          })
+        end,
+  
+        prev_diagnostic = function()
+          vim.diagnostic.goto_prev({
+            float = false,
+          })
+        end,
+      }
+    }
 })
+
+-- then set your keymaps
+
+local r = require('repeatable')
+vim.keymap.set({ 'n' }, '<leader>xn', function()
+  r.call('next_diagnostic')
+end, { desc = 'Next diagnostic' })
+
+vim.keymap.set({ 'n' }, '<leader>xp', r.keymap('prev_diagnostic'), { desc = 'Previous diagnostic' })
+-- r.k(function_name) will also work as keymap
 ```
 
-</details>
 
-## 🧰 Commands
-
-|   Command   |         Description        |
-|-------------|----------------------------|
-|  `:Toggle`  |     Enables the plugin.    |
 
 ## ⌨ Contributing
 
 PRs and issues are always welcome. Make sure to provide as much context as possible when opening one.
-
-## 🗞 Wiki
-
-You can find guides and showcase of the plugin on [the Wiki](https://github.com/genesy/repeatable.nvim/wiki)
-
-## 🎭 Motivations
-
-> If alternatives of your plugin exist, you can provide some pros/cons of using yours over the others.
