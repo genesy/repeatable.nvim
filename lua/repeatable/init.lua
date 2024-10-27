@@ -45,6 +45,14 @@ function Repeatable.call(function_name)
     vim.cmd.normal("g@l")
 end
 
+function Repeatable.keymap(function_name)
+    return function()
+        Repeatable.call(function_name)
+    end
+end
+
+Repeatable.k = Repeatable.keymap
+
 _G.Repeatable = Repeatable
 
 return _G.Repeatable
