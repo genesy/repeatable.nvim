@@ -1,5 +1,5 @@
-YourPluginName.disable()	neovim-plugin-boilerplate.txt	/*YourPluginName.disable()*
-YourPluginName.enable()	neovim-plugin-boilerplate.txt	/*YourPluginName.enable()*
-YourPluginName.options	neovim-plugin-boilerplate.txt	/*YourPluginName.options*
-YourPluginName.setup()	neovim-plugin-boilerplate.txt	/*YourPluginName.setup()*
-YourPluginName.toggle()	neovim-plugin-boilerplate.txt	/*YourPluginName.toggle()*
+Repeatable.disable()	repeatable.txt	/*Repeatable.disable()*
+Repeatable.enable()	repeatable.txt	/*Repeatable.enable()*
+Repeatable.options	repeatable.txt	/*Repeatable.options*
+Repeatable.setup()	repeatable.txt	/*Repeatable.setup()*
+Repeatable.toggle()	repeatable.txt	/*Repeatable.toggle()*
