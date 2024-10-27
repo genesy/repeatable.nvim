@@ -31,6 +31,20 @@ function Repeatable.setup(opts)
     _G.Repeatable.config = config.setup(opts)
 end
 
+function Repeatable.operatorfunc(function_name)
+    return function()
+        if config.options.functions[function_name] == nil then
+            error("Function " .. function_name .. " is not defined in the config.")
+        end
+        config.options.functions[function_name]()
+    end
+end
+
+function Repeatable.call(function_name)
+    vim.o.operatorfunc = "v:lua.require'repeatable'.operatorfunc'" .. function_name .. "'"
+    vim.cmd.normal("g@l")
+end
+
 _G.Repeatable = Repeatable
 
 return _G.Repeatable
